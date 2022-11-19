@@ -12,7 +12,10 @@ import java.util.Set;
 @SessionScope
 public class Cart {
 
-    private Set<BookDto> bookDtos=new HashSet<>();
+    private Set<BookDto> bookDtos
+            =new HashSet<>();
+
+
 
     public int cartSize(){
         return bookDtos.size();
@@ -25,11 +28,9 @@ public class Cart {
     public Set<BookDto> getBookDtos() {
         return bookDtos;
     }
-
     public void removeBookFromCart(BookDto bookDto){
         bookDtos.remove(bookDto);
     }
-
     public void clearCart(){
         bookDtos.clear();
     }

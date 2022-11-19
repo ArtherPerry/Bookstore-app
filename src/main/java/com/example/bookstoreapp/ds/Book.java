@@ -24,20 +24,20 @@ public class Book {
     private String imgUrl;
     @CollectionTable(name = "comments")
     @ElementCollection
-    private List<String> comments = new ArrayList<>();
+    private List<String> comments=
+            new ArrayList<>();
     @ManyToOne
     private Category category;
     @ManyToOne
     private Author author;
-
     @Transient
     private Integer categoryId;
     @Transient
     private Integer authorId;
-
     @ManyToMany(mappedBy = "books")
     private List<Customer> customers=
             new ArrayList<>();
+
 
 
 }

@@ -35,13 +35,15 @@ public class Customer {
         books.add(book);
     }
 
-    public void addOrder(CustomerBookOrder customerBookOrder){
+    public  void addOrder(CustomerBookOrder customerBookOrder){
         customerBookOrder.setCustomer(this);
         customerBookOrders.add(customerBookOrder);
     }
+
     public void addRole(Roles role){
         role.getCustomers().add(this);
         roles.add(role);
     }
-
 }
+
+

@@ -7,6 +7,7 @@ import com.example.bookstoreapp.ds.BookDto;
 import com.example.bookstoreapp.ds.Customer;
 import com.example.bookstoreapp.ds.CustomerBookOrder;
 import com.example.bookstoreapp.ds.Roles;
+import com.example.bookstoreapp.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,15 @@ import java.util.UUID;
 
 @Service
 public class CustomerService {
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private CustomerDao customerDao;
     @Autowired
     private CartService cartService;
-
     @Autowired
     private RolesDao rolesDao;
+
     @Autowired
     private CustomerBookOrderDao customerBookOrderDao;
 
@@ -42,13 +41,14 @@ public class CustomerService {
         Roles roles=rolesDao.findRolesByRoleName("ROLE_USER").get();
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customer.addRole(roles);
-        for (BookDto bookDto:bookDtoList){
+        for(BookDto bookDto:bookDtoList){
             customer.addBook(cartService.toEntity(bookDto));
         }
         Customer customer1=customerDao.saveAndFlush(customer);
 
 
         saveCustomerBookOrder(customer1,bookDtoList);
+
     }
 
     public void saveCustomerBookOrder(Customer customer1,Set<BookDto> bookDtoList) {
@@ -61,7 +61,7 @@ public class CustomerService {
     }
 
     private String generateCode(Customer customer){
-        Random random=new Random();//1 -> 99999
+        Random random=new Random();// 1 -> 99999
         int code= random.nextInt(100000) + 100000;
         return customer.getName() + code;
     }
@@ -69,8 +69,10 @@ public class CustomerService {
     private double totalPrices(Set<BookDto> books){
         return  books
                 .stream()
-                .map(b->b.getPrice() * b.getQuantity())
-                .mapToDouble(d->d)
+                .map(b -> b.getPrice() * b.getQuantity())
+                .mapToDouble(d -> d)
                 .sum();
     }
+
+
 }

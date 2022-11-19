@@ -7,8 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class SecurityCustomer implements UserDetails{
-
+public class SecurityCustomer implements UserDetails {
     private final Customer customer;
 
     public SecurityCustomer(Customer customer) {
@@ -21,7 +20,6 @@ public class SecurityCustomer implements UserDetails{
                 .stream()
                 .map(r -> new SimpleGrantedAuthority(r.getRoleName()))
                 .collect(Collectors.toList());
-
     }
 
     @Override

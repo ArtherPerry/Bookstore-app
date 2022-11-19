@@ -17,10 +17,10 @@ public class CustomerBookOrder {
     private Integer id;
     private String orderCode;
     private double totalAmount;
-
     @ManyToOne
     private Customer customer;
 
 
 
 }
+

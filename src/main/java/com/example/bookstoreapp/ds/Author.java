@@ -20,9 +20,11 @@ public class Author {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     @Embedded
-    private Address address = new Address();
+    private Address address=new Address();
     @OneToMany(mappedBy = "author")
-    private List<Book> bookList = new ArrayList<>();
+    private List<Book> bookList=
+            new ArrayList<>();
+
     public void addBook(Book book){
         book.setAuthor(this);
         bookList.add(book);

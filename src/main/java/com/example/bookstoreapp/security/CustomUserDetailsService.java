@@ -17,6 +17,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         return customerDao
                 .findCustomerByName(username)
                 .map(SecurityCustomer::new)
-                .orElseThrow(()->new UsernameNotFoundException(username+"Not Found!"));
+                .orElseThrow(()-> new UsernameNotFoundException(username + " Not Found!"));
     }
 }

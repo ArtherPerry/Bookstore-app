@@ -22,17 +22,11 @@ public class CartController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/cart/add")
-    public String addToCart(@RequestParam("id") int id, Model model) {
+    @GetMapping("/cart/add/{id}")
+    public String addToCart(@PathVariable int id, Model model){
         cartService.addToCart(bookService.findBookById(id));
-        return "redirect:/shop/books/details?id=" + id;
+        return "redirect:/shop/books/details?id="+id;
     }
-
-    /*@ModelAttribute("cartSize")
-    public int cartSize() {
-        return cartService.cartSize();
-    }*/
-
     @GetMapping("/cart/view")
     public String viewCard(Model model){
         model.addAttribute("cartItems",cartService.listCart());
@@ -40,18 +34,22 @@ public class CartController {
         model.addAttribute("bookDto",new BookDto());
         return "cart-view";
     }
-
+    ///cart/delete/'+${item.id}
     @GetMapping("/cart/delete/{id}")
     public String removeFromCart(@PathVariable("id") int id,Model model){
         model.addAttribute("cartSize",cartService.cartSize());
-        Book book = bookService.findBookById(id);
+
+        Book book=bookService.findBookById(id);
         cartService.remove(cartService.toDto(book));
         return "redirect:/cart/view";
     }
-
     @GetMapping("/cart/clear")
     public String clearCart(){
         cartService.clearCart();
         return "redirect:/cart/view";
     }
+
+
+
+
 }

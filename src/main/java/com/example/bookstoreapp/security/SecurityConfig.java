@@ -11,8 +11,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity)throws Exception{
@@ -20,7 +18,6 @@ public class SecurityConfig {
         httpSecurity.authorizeRequests()
                 .mvcMatchers("/bootstrap/**","/img/**","/","/home").permitAll()
                 .mvcMatchers("/shop/**","/cart/**","/customer/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated();
 
@@ -39,6 +36,9 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
@@ -46,6 +46,7 @@ public class SecurityConfig {
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

@@ -17,21 +17,18 @@ public class BookDto {
     private Integer id;
     private String title;
     private double price;
-    @Min(value = 1)
-    @Max(value = 5)
+    @Min(value = 1)@Max(value = 5)
     private int quantity=1;
     private LocalDate yearPublished;
     private String description;
     private String imgUrl;
-    private int categoryId;
+    private int  categoryId;
     private int authorId;
-
     private List<Integer> bookNumberList=
             new LinkedList<>();
 
-    public BookDto(){
+    public BookDto(){}
 
-    }
 
     public BookDto(Integer id, String title, double price, LocalDate yearPublished, String description, String imgUrl, int categoryId, int authorId) {
         this.id = id;

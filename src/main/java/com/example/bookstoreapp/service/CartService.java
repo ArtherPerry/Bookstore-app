@@ -14,7 +14,6 @@ import java.util.Set;
 
 @Service
 public class CartService {
-
     @Autowired
     private Cart cart;
     @Autowired
@@ -22,7 +21,9 @@ public class CartService {
     @Autowired
     private AuthorDao authorDao;
 
-    public BookDto toDto(Book book) {
+
+
+    public BookDto toDto(Book book){
         return new BookDto(
                 book.getId(),
                 book.getTitle(),
@@ -30,28 +31,28 @@ public class CartService {
                 book.getYearPublished(),
                 book.getDescription(),
                 book.getImgUrl(),
-                book.getAuthor().getId(),
-                book.getCategory().getId());
+                book.getCategory().getId(),
+                book.getAuthor().getId());
     }
 
-    public Book toEntity(BookDto bookDto) {
-        Book book = new Book();
+    public Book toEntity(BookDto bookDto){
+        Book book =new Book();
         book.setId(bookDto.getId());
-        book.setTitle(bookDto.getTitle());
-        book.setPrice(bookDto.getPrice());
         book.setYearPublished(bookDto.getYearPublished());
-        book.setDescription(bookDto.getDescription());
-        book.setImgUrl(bookDto.getImgUrl());
         book.setAuthor(authorDao.findById(bookDto.getAuthorId()).get());
         book.setCategory(categoryDao.findById(bookDto.getCategoryId()).get());
+        book.setPrice(bookDto.getPrice());
+        book.setTitle(bookDto.getTitle());
+        book.setDescription(bookDto.getDescription());
+        book.setImgUrl(bookDto.getImgUrl());
         return book;
     }
 
-    public void addToCart(Book book) {
+    public void addToCart(Book book){
         cart.addToCart(toDto(book));
     }
 
-    public Set<BookDto> listCart() {
+    public Set<BookDto> listCart(){
         return cart.getBookDtos();
     }
 
@@ -59,12 +60,22 @@ public class CartService {
         return cart.cartSize();
     }
 
+
     public void remove(BookDto bookDto){
         cart.removeBookFromCart(bookDto);
     }
 
+
     public void clearCart(){
         cart.clearCart();
     }
+
+
+
+
+
+
+
+
 
 }
