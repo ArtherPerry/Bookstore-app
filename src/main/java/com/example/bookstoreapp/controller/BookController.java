@@ -34,6 +34,11 @@ public class BookController {
         return "home";
     }
 
+    @GetMapping("/account")
+    public String showAccountStatus(){
+        return "account";
+    }
+
     @GetMapping("/admin/dashboard")
     public String dashboard(Model model){
         model.addAttribute("category",new Category());
@@ -56,7 +61,7 @@ public class BookController {
             return "dash-board";
         }
         bookService.saveCategory(category);
-        return "redirect:/";
+        return "redirect:/admin/dashboard";
     }
     @GetMapping("/admin/list-category")
     public String listCategory(Model model){
@@ -70,7 +75,7 @@ public class BookController {
             return "dash-board";
         }
         bookService.saveAuthor(author);
-        return "redirect:/";
+        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/admin/list-author")
@@ -85,7 +90,7 @@ public class BookController {
             return "dash-board";
         }
         bookService.saveBook(book,book.getCategoryId(),book.getAuthorId());
-        return "redirect:/";
+        return "redirect:/admin/dashboard";
     }
 
     @GetMapping("/admin/list-books")
@@ -108,6 +113,10 @@ public class BookController {
     public String bookDetails(@RequestParam("id") int id, Model model){
         model.addAttribute("book",bookService.findBookById(id));
         return "book-detail";
+    }
+    @GetMapping("admin/login")
+    public String login(){
+        return "redirect:/admin/dashboard";
     }
 
     @ModelAttribute("cartSize")

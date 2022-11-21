@@ -18,12 +18,14 @@ public class SecurityConfig {
         httpSecurity.authorizeRequests()
                 .mvcMatchers("/bootstrap/**","/img/**","/","/home").permitAll()
                 .mvcMatchers("/shop/**","/cart/**","/customer/**").permitAll()
+                .mvcMatchers("/slip","/account","/payment")
+                .hasRole("USER")
                 .anyRequest()
-                .authenticated();
+                .hasRole("ADMIN");
 
         httpSecurity.formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
+                .defaultSuccessUrl("/slip")
                 .failureUrl("/login-error")
                 .permitAll()
                 .and()

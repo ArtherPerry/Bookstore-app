@@ -15,14 +15,10 @@
         <p class="lead" th:text="'It costs = '+ ${book.price} + ' $.'"></p>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores at ducimus officiis praesentium? Architecto, eius impedit molestias non obcaecati pariatur quae quasi suscipit ullam vitae? Inventore modi quisquam sapiente.</p>
         <p class="lead"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut error, eveniet facilis illo in, iusto laboriosam minima nostrum porro quaerat quidem reiciendis temporibus vero. Explicabo id minima mollitia optio voluptates?</span></p>
-    </div>
-
-    <div>
         <a th:href="@{'/cart/add/'+ ${book.id}}" class="btn btn-primary btn-lg mr-3">AddToCart</a>
         <a th:href="@{/shop/show-all-books}" class="btn btn-info btn-lg mr-3">ContinueShopping</a>
         <a th:href="@{/cart/view}" class="btn btn-warning btn-lg">View Cart</a>
     </div>
-
 
 </div>
 

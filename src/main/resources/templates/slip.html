@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{layout/shopViewLayout :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<main role="main">
+  <div class="row">
+    <div class="col container text-center " >
+      <h3 >Your Book will be delivered to your address</h3>
+        <div class="container" >
+            <h3>Account Information</h3>
+            <h4>Name : <span sec:authentication="name"></span></h4>
+            <p th:text="'Street Name = '+ ${customer.address.streetName}"></p>
+            <p th:text="'ZipCode = '+${customer.address.zipCode}"></p>
+
+        </div>
+    </div>
+
+  </div>
+</main>
+</body>
+</html>

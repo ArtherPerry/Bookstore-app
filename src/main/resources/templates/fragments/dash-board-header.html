@@ -46,7 +46,7 @@
                             <h1>Category</h1>
                             <h1 class="card-text mb-2"><i class="fas fa-folder-open"></i>
                                 <span class="card-text" th:text="${categories.size()}"></span></h1>
-                            <a href="#" class="btn btn-outline-light btn-block">View</a>
+                            <a href="#" th:href="@{/admin/list-category}" class="btn btn-outline-light btn-block">View</a>
                         </div>
                     </div>
                     <div class="card bg-success text-center mb-3 text-white shadow">
@@ -54,7 +54,7 @@
                             <h1>Author</h1>
                             <h1 class="card-text mb-2"><i class="fas fa-pencil-alt"></i>
                                 <span class="card-text" th:text="${authors.size()}"></span></h1>
-                            <a href="#" class="btn btn-outline-light btn-block">View</a>
+                            <a href="#" th:href="@{/admin/list-author}"  class="btn btn-outline-light btn-block">View</a>
                         </div>
                     </div>
                     <div class="card bg-warning text-center mb-3 text-white shadow">
@@ -62,7 +62,7 @@
                             <h1>Book</h1>
                             <h1 class="card-text mb-2"><i class="fas fa-book"></i>
                                 <span class="card-text" th:text="${books.size()}"></span></h1>
-                            <a href="#" class="btn btn-outline-light btn-block">View</a>
+                            <a href="#" th:href="@{/admin/list-books}" class="btn btn-outline-light btn-block">View</a>
                         </div>
                     </div>
                 </div>
